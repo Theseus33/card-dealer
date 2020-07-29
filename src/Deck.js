@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Card from './Card';
+import "./Deck.css";
+import "./Card.css";
 import axios from "axios";
 const API_BASE_URL = "https://deckofcardsapi.com/api/deck";
 
@@ -21,7 +23,6 @@ class Deck extends Component {
         try {
             let  cardUrl = `${API_BASE_URL}/${deck_id}/draw/`;
             let cardRes = await axios.get(cardUrl);
-            console.log(cardUrl)
             if (!cardRes.data.success) {
                 throw new Error("No Card remaining!");
             }
@@ -50,9 +51,11 @@ class Deck extends Component {
             <Card key={c.id} name={c.name} image={c.image} />
         ));
         return (
-            <div>
-                <h1> Card Dealer</h1>
-                <button onClick={this.getCard }>Get Card!</button>
+            <div>title
+                <h1 className="Deck-title"> Card Dealer</h1>
+                <h2 className="Deck-title subtitle">A little demo made with React</h2>
+                <button className="Deck-btn" onClick={this.getCard }>Get Card!</button>
+        <div className="Deck-cardarea">{cards}</div>
             </div>
         )
     }
